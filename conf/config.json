@@ -1,0 +1,22 @@
+{
+    "development": {
+        "LAUNCH_MESSAGE": "Starting application in DEV mode",
+        "MONGO_SCHEMA": "NodeTestDB",
+        "MONGO_URI": "mongodb://localhost/",
+        "APP_HOST": "lfr407707",
+        "APP_PORT": 8000
+    },
+    "production": {
+        "LAUNCH_MESSAGE": "==========================================================\n========== WARNING LAUNCHING IN PRODUCTION MODE ==========\n==========================================================",
+        "MONGO_SCHEMA": "NodeTestDB",
+        "MONGO_URI": "mongodb://localhost/",
+        "APP_HOST": "localhost",
+        "APP_PORT": 8000
+    },
+    "dockerized": {
+        "LAUNCH_MESSAGE": "==========================================================\n==================== DOCKERIZED !!!! =====================\n==========================================================",
+        "MONGO_SCHEMA": "NodeTestDB",
+        "APP_HOST": "0.0.0.0",
+        "APP_PORT": 8000
+    }
+}
