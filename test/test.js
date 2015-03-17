@@ -3,7 +3,7 @@ var assert = require("assert")
 
 describe('hooks', function () {
     before(function () {
-        app
+
     })
     after(function () {
         // runs after all tests in this block
