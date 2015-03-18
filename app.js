@@ -21,7 +21,7 @@ console.log(config.LAUNCH_MESSAGE);
 // Add all the routes from routes folder
 routes = require('./routes')(app);
 
-var database_url = [config.MONGO_URI + config.MONGO_SCHEMA || "mongodb://" + process.env.DB_PORT_27017_TCP_ADDR + ":" + process.env.DB_PORT_27017_TCP_PORT + "/" + config.MONGO_SCHEMA];
+var database_url = [config.MONGO_URI || "mongodb://" + process.env.DB_PORT_27017_TCP_ADDR + ":" + process.env.DB_PORT_27017_TCP_PORT + "/" ] + config.MONGO_SCHEMA;
 
 // Mongoose
 // MongoDB configuration
