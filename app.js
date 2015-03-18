@@ -35,3 +35,6 @@ mongoose.connect(database_url, function (err, res) {
 
 var server = app.listen(config.APP_PORT, config.APP_HOST);
 console.log('Listening on http://' + config.APP_HOST + ':' + config.APP_PORT);
+
+
+module.exports = server;
