@@ -69,7 +69,7 @@ describe('ApiTest', function () {
             })
         });
         describe('PUT/:id', function () {
-            it('should retrieve the POSTed location', function (done) {
+            it('should modify the POSTed location', function (done) {
                 hippie(app)
                     .header("User-Agent", "hippie")
                     .json()
@@ -83,7 +83,7 @@ describe('ApiTest', function () {
             })
         });
         describe('GET/:id', function () {
-            it('should retrieve the POSTed location', function (done) {
+            it('should retrieve the POSTed location modified', function (done) {
                 hippie(app)
                     .header("User-Agent", "hippie")
                     .json()
