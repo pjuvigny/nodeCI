@@ -11,13 +11,13 @@ module.exports = function (app) {
      * @param {Object} res HTTP response object.
      */
     findAll = function (req, res) {
-        console.log("GET - " + path);
+        logger.info("GET - " + path);
         return Schema.find(function (err, results) {
             if (!err) {
                 return res.send(results);
             } else {
                 res.statusCode = 500;
-                console.log('Internal error(%d): %s', res.statusCode, err.message);
+                logger.error('Internal error(%d): %s', res.statusCode, err.message);
                 return res.send({
                     error: 'Server error'
                 });
@@ -32,7 +32,7 @@ module.exports = function (app) {
      */
     findById = function (req, res) {
 
-        console.log("GET - " + path + "/:id");
+        logger.info("GET - " + path + "/:id" + req.params.id);
         return Schema.findById(req.params.id, function (err, result) {
 
             if (!result) {
@@ -60,7 +60,7 @@ module.exports = function (app) {
             } else {
 
                 res.statusCode = 500;
-                console.log('Internal error(%d): %s', res.statusCode, err.message);
+                logger.error('Internal error(%d): %s', res.statusCode, err.message);
                 return res.send({
                     error: 'Server error'
                 });
@@ -78,7 +78,7 @@ module.exports = function (app) {
      */
     add = function (req, res) {
 
-        console.log('POST - ' + path);
+        logger.info('POST - ' + path);
 
         var result = new Schema(req.body);
 
@@ -86,15 +86,13 @@ module.exports = function (app) {
 
             if (err) {
 
-                console.log('Error while saving result: ' + err);
+                logger.error('Error while saving result: ' + err);
                 res.send({
                     error: err
                 });
                 return;
 
             } else {
-
-                console.log("Created");
                 return res.send({
                     status: 'OK',
                     result: result
@@ -115,7 +113,7 @@ module.exports = function (app) {
      */
     update = function (req, res) {
 
-        console.log("PUT - " + path + "/:id");
+        logger.info("PUT - " + path + "/:id" + req.params.id);
         return Schema.findById(req.params.id, function (err, result) {
 
             if (!result) {
@@ -129,7 +127,6 @@ module.exports = function (app) {
 
             return result.save(function (err) {
                 if (!err) {
-                    console.log('Updated');
                     return res.send({
                         status: 'OK',
                         result: result
@@ -146,7 +143,7 @@ module.exports = function (app) {
                             error: 'Server error'
                         });
                     }
-                    console.log('Internal error(%d): %s', res.statusCode, err.message);
+                    logger.error('Internal error(%d): %s', res.statusCode, err.message);
                 }
 
                 res.send(result);
@@ -162,7 +159,7 @@ module.exports = function (app) {
      */
     del = function (req, res) {
 
-        console.log("DELETE - " + path + "/:id");
+        logger.info("DELETE - " + path + "/:id" + req.params.id);
         return Schema.findById(req.params.id, function (err, result) {
             if (!result) {
                 res.statusCode = 404;
@@ -173,13 +170,12 @@ module.exports = function (app) {
 
             return result.remove(function (err) {
                 if (!err) {
-                    console.log('Removed');
                     return res.send({
                         status: 'OK'
                     });
                 } else {
                     res.statusCode = 500;
-                    console.log('Internal error(%d): %s', res.statusCode, err.message);
+                    logger.error('Internal error(%d): %s', res.statusCode, err.message);
                     return res.send({
                         error: 'Server error'
                     });

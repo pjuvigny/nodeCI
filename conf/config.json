@@ -4,19 +4,30 @@
         "MONGO_SCHEMA": "NodeTestDB",
         "MONGO_URI": "mongodb://localhost/",
         "APP_HOST": "lfr407707",
-        "APP_PORT": 8000
+        "APP_PORT": 8000,
+        "LOG_LEVEL": "debug"
     },
     "production": {
-        "LAUNCH_MESSAGE": "==========================================================\n========== WARNING LAUNCHING IN PRODUCTION MODE ==========\n==========================================================",
+        "LAUNCH_MESSAGE": "========== WARNING LAUNCHING IN PRODUCTION MODE ==========",
         "MONGO_SCHEMA": "NodeTestDB",
         "MONGO_URI": "mongodb://localhost/",
         "APP_HOST": "localhost",
-        "APP_PORT": 8000
+        "APP_PORT": 8000,
+        "LOG_LEVEL": "info"
     },
     "dockerized": {
-        "LAUNCH_MESSAGE": "==========================================================\n==================== DOCKERIZED !!!! =====================\n==========================================================",
+        "LAUNCH_MESSAGE": "==================== DOCKERIZED !!!! =====================",
         "MONGO_SCHEMA": "NodeTestDB",
         "APP_HOST": "0.0.0.0",
-        "APP_PORT": 8000
+        "APP_PORT": 8000,
+        "LOG_LEVEL": "info"
+    },
+    "PIC": {
+        "LAUNCH_MESSAGE": "Starting application for continuous integration",
+        "MONGO_SCHEMA": "NodeTestDB",
+        "MONGO_URI": "mongodb://localhost/",
+        "APP_HOST": "localhost",
+        "APP_PORT": 9900,
+        "LOG_LEVEL": "error"
     }
 }
