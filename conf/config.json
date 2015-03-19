@@ -27,7 +27,7 @@
         "MONGO_SCHEMA": "NodeTestDB",
         "MONGO_URI": "mongodb://localhost/",
         "APP_HOST": "localhost",
-        "APP_PORT": 9900,
-        "LOG_LEVEL": "error"
+        "APP_PORT": 49110,
+        "LOG_LEVEL": "debug"
     }
 }
