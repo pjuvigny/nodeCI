@@ -9,19 +9,16 @@
     "body-parser": "~1.12.0",
     "method-override": "~2.3.1",
     "hal": "~0.1.0",
-    "winston": "~0.9.0",
-    "vows": "~0.8.1",
-    "request": "~2.53.0"
+    "winston": "~0.9.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --recursive -R xunit test/ > unit-tests-report.xml",
-    "testIntegration": "./node_modules/.bin/vows --xunit vows/integration-tests.js > integ-tests-report.xml"
+    "test": "./node_modules/.bin/mocha --recursive -R xunit test/ > unit-tests-report.xml"
   },
   "author ": "pjuvigny",
   "license ": "ISC",
-  "devDependencies ": {
-    "should ": "~5.2.0 ",
-    "mocha ": "~2.2.1 ",
-    "hippie": "~0.3.0"
+  "devDependencies": {
+    "should": "~5.2.0",
+    "hippie": "~0.3.0",
+    "mocha": "~2.2.1"
   }
 }
