@@ -1,9 +1,11 @@
-var Schema = require('../models/quotation.js');
-var path = '/quotation';
+// Modify the resource to point on your schema
+var resource = 'quotation';
+
+var Schema = require('../models/' + resource);
+var path = '/' + resource;
 
 
 module.exports = function (app) {
-
 
     /**
      * Find and retrieves all results
@@ -87,9 +89,17 @@ module.exports = function (app) {
             if (err) {
 
                 logger.error('Error while saving result: ' + err);
-                res.send({
-                    error: err
-                });
+                if (err.name == 'ValidationError') {
+                    res.statusCode = 400;
+                    res.send({
+                        error: err
+                    });
+                } else {
+                    res.statusCode = 500;
+                    res.send({
+                        error: 'Server error'
+                    });
+                }
                 return;
 
             } else {
@@ -135,7 +145,7 @@ module.exports = function (app) {
                     if (err.name == 'ValidationError') {
                         res.statusCode = 400;
                         res.send({
-                            error: 'Validation error'
+                            error: err
                         });
                     } else {
                         res.statusCode = 500;
@@ -145,9 +155,6 @@ module.exports = function (app) {
                     }
                     logger.error('Internal error(%d): %s', res.statusCode, err.message);
                 }
-
-                res.send(result);
-
             });
         });
     };
@@ -190,4 +197,7 @@ module.exports = function (app) {
     app.post(path, add);
     app.put(path + '/:id', update);
     app.delete(path + '/:id', del);
+    
+    // Add routes to the route_list
+    route_list[resource + '_url'] = path + '{/' + resource + '_id}';
 }

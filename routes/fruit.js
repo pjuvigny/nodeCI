@@ -1,5 +1,5 @@
 // Modify the resource to point on your schema
-var resource = 'trip';
+var resource = 'fruit';
 
 var Schema = require('../models/' + resource);
 var path = '/' + resource;

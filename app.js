@@ -17,17 +17,17 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Launch with 'NODE_ENV=[production/development/etc ...] node .'
-// config is reachable in all the application
+// Config is reachable in all the application taken from ./conf/config.json
 config = require('./conf/config.json')[process.env.NODE_ENV || 'production'];
 
 
-// Logger using console only for error
+// Logger using console only for errors
 logger = new(winston.Logger)({
     transports: [
-      new(winston.transports.Console)({
+      /*new(winston.transports.Console)({
             level: 'error',
             json: false
-        }),
+        }),*/
       new(winston.transports.File)({
             filename: 'application.log',
             level: config.LOG_LEVEL,
@@ -36,15 +36,22 @@ logger = new(winston.Logger)({
     ]
 });
 
+// Prints Launch message
 logger.info(config.LAUNCH_MESSAGE);
 
-// Add all the routes from routes folder
+// API object to be sent back on "GET /"
+route_list = {};
+
+// Add all the routes from the ./routes folder
 routes = require('./routes')(app);
 
-var database_url = [config.MONGO_URI || "mongodb://" + process.env.DB_PORT_27017_TCP_ADDR + ":" + process.env.DB_PORT_27017_TCP_PORT + "/"] + config.MONGO_SCHEMA;
+// Answers to "GET /", Add all the routes you need in the corresponding ./routes file with route_list[resource] = path;
+app.get("/", function (req, res) {res.send(route_list);});
+
 
 // Mongoose
 // MongoDB configuration
+var database_url = [config.MONGO_URI || "mongodb://" + process.env.DB_PORT_27017_TCP_ADDR + ":" + process.env.DB_PORT_27017_TCP_PORT + "/"] + config.MONGO_SCHEMA;
 mongoose.connect(database_url, function (err, res) {
     if (err) {
         logger.error('error connecting to MongoDB Database. ' + err);

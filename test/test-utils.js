@@ -47,7 +47,22 @@ module.exports = {
         return function (err, res, callbacks) {
             should.not.exist(err);
             res.statusCode.should.equal(status);
-
+            
+            // Go on with the next callbacks
+            callbacks.shift()(err, res, callbacks);
+        }
+    },
+    
+    // Callback for testing validation error
+    isValidationError: function (errors) {
+        return function (err, res, callbacks) {
+            should.not.exist(err);
+            JSON.parse(res.body).error.name.should.equal('ValidationError');
+            
+            errors.forEach(function(e) {
+                JSON.parse(res.body).error.errors.should.have.property(e);
+            });
+            
             // Go on with the next callbacks
             callbacks.shift()(err, res, callbacks);
         }
