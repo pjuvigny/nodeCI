@@ -3,7 +3,7 @@ var test = require('./test-utils');
 
 
 // Modify the tested resource
-var resource = 'fruit';
+var resource = 'fruits';
 
 // Ok data
 var data = {

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Fruit = new Schema({
+var Fruits = new Schema({
     name: {
         type: String,
         required: true
@@ -18,4 +18,4 @@ var Fruit = new Schema({
     }
 });
 
-module.exports = mongoose.model('Fruit', Fruit);
+module.exports = mongoose.model('Fruits', Fruits);

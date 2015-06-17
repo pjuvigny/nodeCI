@@ -1,6 +1,6 @@
 var Crudit = require('../utils/crud-it');
 // Modify the resource to point on your schema
-var resource = 'fruit';
+var resource = 'fruits';
 
 var schema = require('../models/' + resource);
 
