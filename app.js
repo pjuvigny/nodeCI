@@ -54,7 +54,7 @@ app.get("/", function (req, res) {res.send(route_list);});
 var database_url = [config.MONGO_URI || "mongodb://" + process.env.DB_PORT_27017_TCP_ADDR + ":" + process.env.DB_PORT_27017_TCP_PORT + "/"] + config.MONGO_SCHEMA;
 mongoose.connect(database_url, function (err, res) {
     if (err) {
-        logger.error('error connecting to MongoDB Database. ' + err);
+        logger.error('Error connecting to MongoDB Database. ' + err);
     } else {
         logger.info('Connected to Database: ' + database_url);
     }
